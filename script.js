@@ -5,7 +5,12 @@ let positionBox = document.getElementById("positions");
 let robot = document.getElementById("mainRobot");
 let robots = document.getElementById("robots");
 let play = document.getElementById("playSim");
+let positionText = document.getElementById("position");
+let changeColor = document.getElementById("redAlliance");
+let changeUnit = document.getElementById("isMeters");
+let metersConversion = 1;
 let rotation = 0;
+let color = "blue";
 let time = 0;
 let xMPS = 1;
 let yMPS = 1;
@@ -32,10 +37,6 @@ for (let i = 0; i < 20000; i++) {
   }
 }
 window.onload = function () {
-  if (maxWidth > 1200) {
-    maxWidth = 622;
-    maxHeight = 500;
-  }
   setTimeout(function () {
     field.style.width = fieldLength + "px";
     field.style.height = fieldHeight + "px";
@@ -47,13 +48,26 @@ window.onload = function () {
 window.addEventListener("mousemove", (event) => {
   cX = Math.round(event.clientX - maxWidth / 2) - 9;
   cY = Math.round(event.clientY - maxHeight / 2) - 9;
-  if (Math.abs(cX) < fieldLength / 2 && Math.abs(cY) < fieldHeight / 2) {
+  console.log(cY);
+  console.log("maxWidth" + maxWidth);
+  if (
+    Math.abs(cX) < fieldLength &&
+    Math.abs(cY) < fieldHeight / 2 - robotHeight / 2
+  ) {
     if (cX > 237 + robotLength / 2) {
       cX = 237 + robotLength / 2;
     }
     if (cX < -(237 + robotLength / 2)) {
       cX = -(237 + robotLength / 2);
     }
+    positionText.innerHTML =
+      "(X: " +
+      Math.round(100 * (cX / metersConversion)) / 100 +
+      ", Y: " +
+      Math.round(100 * (cY / metersConversion)) / 100 +
+      ", R: " +
+      rotation +
+      ")";
     mousePos = { x: cX, y: cY };
     moveRobot(cX, cY, rotation, robot);
   } else {
@@ -75,9 +89,9 @@ function addPoint(x, y, r) {
   let newDiv = document.createElement("div");
   newDiv.innerHTML =
     "<p> new Pose2d(new Translate2d(" +
-    x +
+    Math.round(100 * (x / metersConversion)) / 100 +
     "," +
-    y +
+    Math.round(100 * (y / metersConversion)) / 100 +
     "), new Rotation2d(" +
     r +
     "))</p>";
@@ -101,13 +115,13 @@ document.onkeydown = function (event) {
 };
 function moveRobot(x, y, r, element) {
   createMarginLeft(x, element);
-  createMarginRight(y, element);
+  createMarginTop(y, element);
   createRotation(r, element);
 }
 function createMarginLeft(i, element) {
-  element.style.marginLeft = i + fieldLength / 2 - robotLength / 2 + "px";
+  element.style.marginLeft = i + maxWidth / 2 + -robotLength / 2 + "px";
 }
-function createMarginRight(i, element) {
+function createMarginTop(i, element) {
   element.style.marginTop =
     i +
     (maxHeight - fieldHeight) / 2 +
@@ -125,7 +139,9 @@ function simulate(i) {
   let newDiv = document.createElement("div");
   newDiv.innerHTML = "<p>3314</p>";
   robots.appendChild(newDiv);
-  newDiv.style.backgroundColor = "blue";
+  newDiv.style.backgroundColor = color;
+  newDiv.style.color = "white";
+  newDiv.style.border = "1px solid " + color;
   newDiv.id = "testBot";
   newDiv.className = i;
   moveRobot(x, y, r, newDiv);
@@ -172,3 +188,20 @@ function largest(one, two) {
   }
   return two;
 }
+changeColor.addEventListener("change", (e) => {
+  if (e.target.checked === true) {
+    color = "red";
+  }
+  if (e.target.checked === false) {
+    color = "blue";
+  }
+});
+
+changeUnit.addEventListener("change", (e) => {
+  if (e.target.checked === true) {
+    metersConversion = 39.37;
+  }
+  if (e.target.checked === false) {
+    metersConversion = 1;
+  }
+});

@@ -13,14 +13,18 @@ body {
 }
 #robots div {
   position: absolute;
-  color: white;
+  color: black;
   width: 33px;
   height: 27px;
   z-index: 2;
-  background-color: red;
+  background-color: transparent;
   text-align: center;
   margin-left: 900px;
   margin-top: 200px;
+  border: 1px solid black;
+}
+#mainRobot p {
+  color: black;
 }
 #robots div p {
   margin-top: 4px;
@@ -32,6 +36,8 @@ body {
   width: 500px;
   color: #f29f05;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 #title {
   border: 1px dotted #7230a7;
@@ -45,4 +51,42 @@ body {
 }
 #positions div {
   border: 1px dotted #7230a7;
+}
+#navs div {
+  position: absolute;
+  margin-left: 0.5%;
+  z-index: 3;
+
+  color: #f29f05;
+  text-align: center;
+}
+#topNav {
+  width: 98%;
+  border-top: 1px solid grey;
+}
+#bottomNav {
+  width: 98%;
+  bottom: 0;
+}
+#leftNav {
+  left: 0;
+  width: 20%;
+}
+#rightNav {
+  right: 0;
+  width: 20%;
+}
+#settings {
+  margin-bottom: 100px;
+}
+#positionBox{
+  margin-top: 20px;
+  margin-left: 70%;
+}
+#playSim{
+  width: 100%;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  background-color: #7230a7;
+  border: transparent;
 }
