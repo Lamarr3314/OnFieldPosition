@@ -4,7 +4,12 @@ let field = document.getElementById("fullField");
 let positionBox = document.getElementById("positions");
 let robot = document.getElementById("mainRobot");
 let robots = document.getElementById("robots");
+let play = document.getElementById("playSim");
 let rotation = 0;
+let time = 0;
+let xMPS = 1;
+let yMPS = 1;
+let rRPS = 1;
 let fieldLength = 622;
 let fieldHeight = 315;
 let maxWidth = 0;
@@ -12,6 +17,8 @@ let maxHeight = 0;
 let robotLength = 33;
 let robotHeight = 27;
 let listOfPoints = [];
+let finishedTranslation = true;
+let lastFinishedTranslation = false;
 let cX = null;
 let cY = null;
 for (let i = 0; i < 200000; i++) {
@@ -41,6 +48,12 @@ window.addEventListener("mousemove", (event) => {
   cX = Math.round(event.clientX - maxWidth / 2) - 9;
   cY = Math.round(event.clientY - maxHeight / 2) - 9;
   if (Math.abs(cX) < fieldLength / 2 && Math.abs(cY) < fieldHeight / 2) {
+    if (cX > 237 + robotLength / 2) {
+      cX = 237 + robotLength / 2;
+    }
+    if (cX < -(237 + robotLength / 2)) {
+      cX = -(237 + robotLength / 2);
+    }
     mousePos = { x: cX, y: cY };
     moveRobot(cX, cY, rotation, robot);
   } else {
@@ -62,11 +75,11 @@ function addPoint(x, y, r) {
   let newDiv = document.createElement("div");
   newDiv.innerHTML =
     "<p> new Pose2d(new Translate2d(" +
-    Math.floor(x / 39.37) +
+    x +
     "," +
-    Math.floor(y / 39.37) +
+    y +
     "), new Rotation2d(" +
-    Math.floor((Math.PI / 180) * r) +
+    r +
     "))</p>";
   positionBox.appendChild(newDiv);
   console.log(listOfPoints);
@@ -105,7 +118,57 @@ function createMarginRight(i, element) {
 function createRotation(i, element) {
   element.style.transform = "rotate(" + i + "deg)";
 }
-//TODO: Find better way of rounding, math.floor doesn't work properly
+function simulate(i) {
+  let x = listOfPoints[i].x;
+  let y = listOfPoints[i].y;
+  let r = listOfPoints[i].r;
+  let newDiv = document.createElement("div");
+  newDiv.innerHTML = "<p>3314</p>";
+  robots.appendChild(newDiv);
+  newDiv.style.backgroundColor = "blue";
+  newDiv.id = "testBot";
+  newDiv.className = i;
+  moveRobot(x, y, r, newDiv);
+  setTimeout(function () {
+    let directionX = -(listOfPoints[i].x - listOfPoints[i + 1].x);
+    let directionY = -(listOfPoints[i].y - listOfPoints[i + 1].y);
+    let directionR = -(listOfPoints[i].r - listOfPoints[i + 1].r);
+    console.log("X: " + directionX);
+    let Xtime = (Math.abs(directionX) / 40) * xMPS;
+    let Ytime = (Math.abs(directionY) / 40) * yMPS;
+    let Rtime = ((Math.abs(directionR) * Math.PI) / 180) * rRPS;
+    console.log("Rtime: " + Rtime);
+    console.log("Xtime: " + Xtime);
+    console.log("Ytime: " + Ytime);
+    time = largest(largest(Xtime, Ytime), Rtime);
+    console.log("TIME: ", time);
+    newDiv.style.transition = "all " + time + "s";
+    newDiv.style.transform =
+      "translate(" +
+      directionX +
+      "px," +
+      directionY +
+      "px) rotate(" +
+      directionR +
+      "deg)";
+    console.log();
+    newDiv.addEventListener("transitionend", (event) => {
+      newDiv.remove();
+      if (i < listOfPoints.length - 2) {
+        simulate(i + 1);
+      }
+    });
+  }, 50);
+}
 //-Add in simulation, div element goes away once the point is reached, this may mean adding in a robotsMade counter
 //convert points to how we use them, weird thing with x and y
 //TODO: add interactions on the field, we can't go through the wall or a peg
+playSim.onclick = function () {
+  simulate(0);
+};
+function largest(one, two) {
+  if (one > two) {
+    return one;
+  }
+  return two;
+}
