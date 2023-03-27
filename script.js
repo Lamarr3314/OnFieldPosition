@@ -108,3 +108,4 @@ function createRotation(i, element) {
 //TODO: Find better way of rounding, math.floor doesn't work properly
 //-Add in simulation, div element goes away once the point is reached, this may mean adding in a robotsMade counter
 //convert points to how we use them, weird thing with x and y
+//TODO: add interactions on the field, we can't go through the wall or a peg
