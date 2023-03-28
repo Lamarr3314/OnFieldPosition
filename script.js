@@ -3,9 +3,11 @@ let mousePos = { x: undefined, y: undefined };
 let field = document.getElementById("fullField");
 let positionBox = document.getElementById("positions");
 let bumperLength = 10.5;
+let mainBumper = document.getElementById("bumper");
 let robot = document.getElementById("mainRobot");
 let robots = document.getElementById("robots");
 let play = document.getElementById("playSim");
+let addBumper = document.getElementById("addBumper");
 let positionText = document.getElementById("position");
 let changeColor = document.getElementById("redAlliance");
 let bumper = document.getElementById("bumper");
@@ -18,6 +20,7 @@ let customValues = [customX, customY, customR];
 let metersConversion = 1;
 let rotation = 0;
 let color = "blue";
+let withBumper = false;
 let time = 0;
 let xMPS = 1;
 let yMPS = 1;
@@ -266,3 +269,13 @@ changeUnit.addEventListener("change", (e) => {
 function isValidPoint() {
   return true;
 }
+addBumper.addEventListener("change", (e) => {
+  if (e.target.checked === true) {
+    withBumper = true;
+    bumper.style.display = "block";
+  }
+  if (e.target.checked === false) {
+    withBumper = false;
+    bumper.style.display = "none";
+  }
+});
