@@ -16,7 +16,58 @@
       <div id="title">
         <h2>Robot Simulation</h2>
       </div>
+      <div id="addPoint">
+        <div id="xGroup">
+          <p>X:</p>
+          <textarea
+            name="customX"
+            id="customX"
+            cols="3"
+            rows="0"
+            style="
+              color: #f29f05;
+              font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+                sans-serif;
+              text-align: center;
+            "
+          ></textarea>
+        </div>
+        <div id="yGroup">
+          <p>Y:</p>
+          <textarea
+            name="customY"
+            id="customY"
+            cols="3"
+            rows="0"
+            style="
+              color: #f29f05;
+              font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+                sans-serif;
+              text-align: center;
+            "
+          ></textarea>
+        </div>
+        <div id="rGroup">
+          <p>R:</p>
+          <textarea
+            name="customR"
+            id="customR"
+            cols="3"
+            rows="0"
+            style="
+              color: #f29f05;
+              font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+                sans-serif;
+              text-align: center;
+            "
+          ></textarea>
+        </div>
+        <div id="submit">
+          <button id="customSub">Submit</button>
+        </div>
+      </div>
       <div id="positions"></div>
+
       <div id="play"><button id="playSim">play</button></div>
     </div>
     <div id="navs">
@@ -38,17 +89,22 @@
         <input type="checkbox" name="redAlliance" id="redAlliance" />
         <h2>Meters</h2>
         <input type="checkbox" name="isMeters" id="isMeters" />
+        <h2>Add Bumper</h2>
+        <input type="checkbox" name="addBumper" id="addBumper" />
       </div>
       <div id="bottomNav">
         <h2 id="position">(x,y,r)</h2>
       </div>
     </div>
-
+    <div id="clock">
+      <h2>15 seconds</h2>
+    </div>
     <div id="fullField">
       <img src="images/scaledField.jpg" alt="" />
     </div>
     <div id="robots">
       <div id="mainRobot">
+        <div id="bumper" class="bumper"></div>
         <p>3314</p>
       </div>
     </div>

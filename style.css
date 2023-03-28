@@ -1,3 +1,8 @@
+#bumper {
+  background-color: grey;
+  z-index: 7;
+  margin: 0px;
+}
 #fullField {
   border: 1px solid black;
   position: absolute;
@@ -14,20 +19,21 @@ body {
 #robots div {
   position: absolute;
   color: black;
-  width: 33px;
-  height: 27px;
-  z-index: 2;
+  width: 39px;
+  height: 33px;
+  z-index: 0;
   background-color: transparent;
   text-align: center;
   margin-left: 900px;
   margin-top: 200px;
   border: 1px solid black;
+  text-align: center;
 }
 #mainRobot p {
   color: black;
 }
 #robots div p {
-  margin-top: 4px;
+  margin: auto;
 }
 #positionBox {
   position: absolute;
@@ -38,6 +44,7 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
+  background-color: #1d1d16;
 }
 #title {
   border: 1px dotted #7230a7;
@@ -54,7 +61,6 @@ body {
 }
 #navs div {
   position: absolute;
-  margin-left: 0.5%;
   z-index: 3;
 
   color: #f29f05;
@@ -62,7 +68,6 @@ body {
 }
 #topNav {
   width: 98%;
-  border-top: 1px solid grey;
 }
 #bottomNav {
   width: 98%;
@@ -79,14 +84,75 @@ body {
 #settings {
   margin-bottom: 100px;
 }
-#positionBox{
+#positionBox {
   margin-top: 20px;
   margin-left: 70%;
 }
-#playSim{
+#playSim {
   width: 100%;
   border-bottom-left-radius: 100px;
   border-bottom-right-radius: 100px;
   background-color: #7230a7;
   border: transparent;
+}
+body {
+  margin-top: 0px;
+}
+#body p {
+  color: black;
+}
+.bumper {
+  display: none;
+  background-color: gray !important;
+  margin-top: 0px !important;
+  margin-bottom: 0 !important;
+  margin-left: -10px !important;
+  margin-right: 0 !important;
+  width: 10.5px !important;
+  border: none !important;
+}
+#robots div p {
+  margin: auto;
+  margin-top: 7.5px;
+  margin-bottom: 7.5px;
+}
+#addPoint div textarea {
+  outline: none;
+  border: 1px solid black;
+  margin-top: 10px;
+  width: 60px;
+  height: 16px;
+  background-color: #1d1d16;
+}
+#addPoint div textarea {
+  color: #f29f05;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+#addPoint div textarea:focus {
+  outline: none;
+}
+#addPoint div p {
+  margin-top: 14px;
+}
+#addPoint {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border: 1px dotted #7230a7;
+}
+#addPoint div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 120px;
+}
+#clock {
+  position: absolute;
+  z-index: 10;
+  color: #f29f05;
+  font-size: 50px;
+  text-align: center;
+  width: 99%;
+  margin-top: 8%;
 }
