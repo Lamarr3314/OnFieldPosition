@@ -175,25 +175,25 @@ body {
       #7a00ff,
       #ff00c8,
       #ff0000 */
-      #e85100,
-    #e75100,
-    #e77b00,
-    #e7a200,
-    #e7a600,
-    #c4e700,
-    #e86800,
-    #e78700,
-    #e77000e8
+      #a75c30,
+    #a77330,
+    #6430a7,
+    #7730a7,
+    #8030a7,
+    #9000b7,
+    #a77330,
+    #a77330,
+    #a75c30
   );
   position: absolute;
-  top: -2px;
-  left: -2px;
-  background-size: 400%;
+  top: -10px;
+  left: -10px;
+  background-size: 100%;
   z-index: -1;
-  filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  animation: glowing 20s linear infinite;
+  filter: blur(8px);
+  width: calc(100% + 27px);
+  height: calc(100% + 20px);
+  animation: glowing 5s linear infinite;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   border-radius: 24px;
@@ -211,8 +211,8 @@ body {
   z-index: -1;
   content: "";
   position: absolute;
-  width: 102%;
-  height: 102%;
+  width: 100%;
+  height: 100%;
   background: #1d1d16;
   left: 0;
   top: 0;
