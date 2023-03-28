@@ -149,13 +149,13 @@ function addPoint(x, y, r) {
   listOfPoints.push({ x: x, y: y, r: r });
   let newDiv = document.createElement("div");
   newDiv.innerHTML =
-    "<p> new Pose2d(new Translate2d(" +
+    "<p>Translate2d(" +
     Math.round(100 * (x / metersConversion)) / 100 +
     "," +
     -(Math.round(100 * (y / metersConversion)) / 100) +
-    "), new Rotation2d(" +
+    ") Rotation2d(" +
     r +
-    "))</p>";
+    ")</p>";
   positionBox.appendChild(newDiv);
   moveRobot(x, y, r, robot);
 }
