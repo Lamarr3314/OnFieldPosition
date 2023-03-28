@@ -56,7 +56,6 @@ body {
 #navs div {
   position: absolute;
   z-index: 3;
-
   color: #f29f05;
   text-align: center;
 }
@@ -70,7 +69,10 @@ body {
 #leftNav {
   left: 0;
   width: 24%;
-  height: 75%;
+}
+#leftNavStuff {
+  height: 210%;
+  width: 100%;
   overflow-y: scroll;
 }
 #rightNav {
