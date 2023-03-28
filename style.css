@@ -3,17 +3,8 @@
   z-index: 7;
   margin: 0px;
 }
-#fullField {
-  border: 1px solid black;
-  position: absolute;
-  z-index: -1;
-  border-radius: 24px;
-}
-#fullField img {
-  border-radius: 24px;
-}
+
 body {
-  cursor: crosshair;
   background-color: #1d1d16;
 }
 #robots div {
@@ -31,6 +22,9 @@ body {
 }
 #mainRobot p {
   color: black;
+}
+#mainRobot:hover {
+  cursor: crosshair;
 }
 #robots div p {
   margin: auto;
@@ -149,10 +143,86 @@ body {
 }
 #clock {
   position: absolute;
-  z-index: 10;
+  z-index: -1;
   color: #f29f05;
   font-size: 50px;
   text-align: center;
   width: 99%;
   margin-top: 8%;
+}
+
+#fullField {
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #1d1d16;
+  cursor: pointer;
+  position: relative;
+  border-radius: 24px;
+}
+
+#fullField:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    /* #ff0000,
+      #ff7300,
+      #fffb00,
+      #48ff00,
+      #00ffd5,
+      #002bff,
+      #7a00ff,
+      #ff00c8,
+      #ff0000 */
+      #e85100,
+    #e75100,
+    #e77b00,
+    #e7a200,
+    #e7a600,
+    #c4e700,
+    #e86800,
+    #e78700,
+    #e77000e8
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 24px;
+}
+
+#fullField:active {
+  color: #1d1d16;
+}
+
+#fullField:before {
+  opacity: 1;
+}
+
+#fullField:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 102%;
+  height: 102%;
+  background: #1d1d16;
+  left: 0;
+  top: 0;
+  border-radius: 24px;
+}
+#fullField {
+  position: absolute;
+  z-index: -1;
+  border-radius: 24px;
+}
+#fullField img {
+  border-radius: 24px;
 }

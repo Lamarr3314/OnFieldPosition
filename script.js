@@ -237,6 +237,7 @@ function simulate(i) {
 //convert points to how we use them, weird thing with x and y
 //TODO: add interactions on the field, we can't go through the wall or a peg
 playSim.onclick = function () {
+  console.log("Simulation");
   simulate(0);
 };
 function largest(one, two) {
@@ -262,3 +263,6 @@ changeUnit.addEventListener("change", (e) => {
     metersConversion = 1;
   }
 });
+function isValidPoint() {
+  return true;
+}
