@@ -7,7 +7,20 @@
 body {
   background-color: #1d1d16;
 }
-#robots div {
+#mainRobot {
+  position: absolute;
+  color: black;
+  width: 39px;
+  height: 33px;
+  z-index: 0;
+  background-color: transparent;
+  text-align: center;
+  margin-left: 900px;
+  margin-top: 200px;
+  border: 1px solid black;
+  text-align: center;
+}
+#otherRobots div {
   position: absolute;
   color: black;
   width: 39px;

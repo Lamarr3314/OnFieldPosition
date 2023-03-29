@@ -5,7 +5,7 @@ let positionBox = document.getElementById("positions");
 let bumperLength = 10.5;
 let mainBumper = document.getElementById("bumper");
 let robot = document.getElementById("mainRobot");
-let robots = document.getElementById("robots");
+let robots = document.getElementById("otherRobots");
 let play = document.getElementById("playSim");
 let addBumper = document.getElementById("addBumper");
 let positionText = document.getElementById("position");
@@ -74,11 +74,8 @@ customSub.onclick = function () {
     }
   }
   if (x !== null && y !== null && r !== null) {
-    addPoint(x, y, r);
-    let newDiv = document.createElement("div");
-    newDiv.innerHTML = "<p>3314</p>";
-    robots.appendChild(newDiv);
-    moveRobot(x, y, r, newDiv);
+    listOfPoints.push({ x: x, y: y, r: r });
+    reloadList();
     customX.value = "";
     customY.value = "";
     customR.value = "";
@@ -142,14 +139,16 @@ window.addEventListener("mousemove", (event) => {
 });
 
 robot.onclick = function () {
-  addPoint(cX, cY, rotation);
+  listOfPoints.push({ x: cX, y: cY, r: rotation });
+  reloadList();
+};
+function createRobot(x, y, r) {
   let newDiv = document.createElement("div");
   newDiv.innerHTML = "<p>3314</p>";
   robots.appendChild(newDiv);
-  moveRobot(cX, cY, rotation, newDiv);
-};
+  moveRobot(x, y, r, newDiv);
+}
 function addPoint(x, y, r) {
-  listOfPoints.push({ x: x, y: y, r: r });
   let newDiv = document.createElement("div");
   newDiv.innerHTML =
     "<p>Translate2d(" +
@@ -160,7 +159,34 @@ function addPoint(x, y, r) {
     r +
     ")</p>";
   positionBox.appendChild(newDiv);
+  newDiv.onclick = function () {
+    console.log("Cond");
+  };
   moveRobot(x, y, r, robot);
+}
+function addPointIndex(x, y, r, i) {
+  let newDiv = document.createElement("div");
+  newDiv.innerHTML =
+    "<p>Translate2d(" +
+    Math.round(100 * (x / metersConversion)) / 100 +
+    "," +
+    -(Math.round(100 * (y / metersConversion)) / 100) +
+    ") Rotation2d(" +
+    r +
+    ")</p>";
+  positionBox.appendChild(newDiv);
+  newDiv.className = i;
+  newDiv.onclick = function () {
+    editPoint(newDiv);
+  };
+  moveRobot(x, y, r, robot);
+}
+function editPoint(div) {
+  console.log(div.className);
+  listOfPoints[div.className].x = Number(customX.value);
+  listOfPoints[div.className].y = Number(customY.value);
+  listOfPoints[div.className].r = Number(customR.value);
+  reloadList();
 }
 function playAnimation() {}
 document.onkeydown = function (event) {
@@ -279,3 +305,11 @@ addBumper.addEventListener("change", (e) => {
     bumper.style.display = "none";
   }
 });
+function reloadList() {
+  positionBox.innerHTML = "";
+  robots.innerHTML = "";
+  for (let i = 0; i < listOfPoints.length; i++) {
+    addPointIndex(listOfPoints[i].x, listOfPoints[i].y, listOfPoints[i].r, i);
+    createRobot(listOfPoints[i].x, listOfPoints[i].y, listOfPoints[i].r);
+  }
+}
