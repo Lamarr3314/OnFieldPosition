@@ -313,3 +313,13 @@ function reloadList() {
     createRobot(listOfPoints[i].x, listOfPoints[i].y, listOfPoints[i].r);
   }
 }
+//TODO: 
+//-On hover of one of the list of points, three buttons will show up(delete, swap, copy, edit)
+//  --When the copy is clicked, a series of three new buttons will pop out. These will be buttons for copying one of four things:
+//    X value, Y value, R value, and entire pose.
+//  --When swap is clicked, the button will be highlighted and then when the user's mouse hovers over another list of points, that div will be highlighted
+//    if this div is clicked from there, the positions will be swapped based on the class id of the divs, then reload will be called and the list will reset itself
+//-Fix rotation animation bug.
+//-Convert to radians w/ meters button click.
+//-Meters button click is defaulted on reload.
+//-Have the add Bumper, which really should be add intake, when selected also appear on the newly formed divs.
